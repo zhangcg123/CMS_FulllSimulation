@@ -1,0 +1,11 @@
+Executable = RunGENSIM_condor_$(Process).sh
+Universe = vanilla
+Requirements =FileSystemDomain=="fnal.gov" && Arch=="X86_64"
+Notification = ERROR
+Should_Transfer_Files = YES
+WhenToTransferOutput = ON_EXIT
+transfer_input_files = RunGENSIM_condor_0.sh,RunGENSIM_condor_1.sh,RunGENSIM_condor_2.sh,RunGENSIM_condor_3.sh,SMP-RunIISummer15wmLHEGS-00029_Hadronization_1_cfg.py.bkup,SMP-RunIISummer15wmLHEGS-00029_Hadronization_2_cfg.py.bkup,SMP-RunIISummer15wmLHEGS-00029_Hadronization_3_cfg.py.bkup,SMP-RunIISummer15wmLHEGS-00029_Hadronization_4_cfg.py.bkup,aQGC_WPlepWMhadJJ_EWK_LO_NPle1_tarball_MadDefCard.tar.xz,aQGC_WPlepWMhadJJ_EWK_LO_NPle1_tarball_RunCard_ssWW.tar.xz,aQGC_WPlepWMhadJJ_EWK_LO_NPle1_tarball_RunCard_ssWW_VBFcut.tar.xz,aQGC_WPlepWMhadJJ_EWK_LO_NPle1_tarball_RunCard_ssWW_tigherVBFcut.tar.xz
+x509userproxy = $ENV(X509_USER_PROXY)
+Output = aQGC_WPlepWMhadJJ_EWK_LO_NPle1_tarball_MadDefCard_$(Process).stdout
+Error  = aQGC_WPlepWMhadJJ_EWK_LO_NPle1_tarball_MadDefCard_$(Process).stdout
+Queue 4
