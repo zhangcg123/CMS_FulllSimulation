@@ -76,8 +76,7 @@ process.GlobalTag = GlobalTag(process.GlobalTag, 'auto:mc', '')
 process.generator = cms.EDFilter("Pythia8HadronizerFilter",
     PythiaParameters = cms.PSet(
         parameterSets = cms.vstring('pythia8CommonSettings', 
-            'pythia8CUEP8M1Settings',
-	    'processParameters'),
+            'pythia8CUEP8M1Settings'),
         pythia8CUEP8M1Settings = cms.vstring('Tune:pp 14', 
             'Tune:ee 7', 
             'MultipartonInteractions:pT0Ref=2.4024', 
@@ -91,26 +90,7 @@ process.generator = cms.EDFilter("Pythia8HadronizerFilter",
             'SLHA:minMassSM = 1000.', 
             'ParticleDecays:limitTau0 = on', 
             'ParticleDecays:tau0Max = 10', 
-            'ParticleDecays:allowPhotonRadiation = on'),
-	processParameters = cms.vstring(
-	    #'24:onMode = off',
-	    #'24:onIfAny = 11 13 15'
-	    #'24:oneChannel = 1 0.5 100 11 12 13'
-	    #'-24:onMode = off',
-	    #'-24:onIfAny = 1 2 3 4 5'
-	    #'-24:oneChannel = 1 0.5 100 1 2 3 4 5'
-	    'JetMatching:setMad = off',	# Ref: https://twiki.cern.ch/twiki/bin/view/CMSPublic/WorkBookGeneration
-            'JetMatching:scheme = 1',
-            'JetMatching:merge = on',
-	    'JetMatching:jetAlgorithm = 2',
-	    'JetMatching:etaJetMax = 5.',
-	    'JetMatching:coneRadius = 1.',
-	    'JetMatching:slowJetPower = 1',
-	    'JetMatching:qCut = 30.', #this is the actual merging scale
-	    'JetMatching:nQmatch = 5', #4 corresponds to 4-flavour scheme (no matching of b-quarks), 5 for 5-flavour scheme
-	    'JetMatching:nJetMax = 4', #number of partons in born matrix element for highest multiplicity
-	    'JetMatching:doShowerKt = off', #off for MLM matching, turn on for shower-kT matching
-	)
+            'ParticleDecays:allowPhotonRadiation = on')
     ),
     comEnergy = cms.double(13000.0),
     filterEfficiency = cms.untracked.double(1.0),
@@ -121,9 +101,8 @@ process.generator = cms.EDFilter("Pythia8HadronizerFilter",
 
 
 process.externalLHEProducer = cms.EDProducer("ExternalLHEProducer",
-    #args = cms.vstring('/cvmfs/cms.cern.ch/phys_generator/gridpacks/slc6_amd64_gcc481/13TeV/madgraph/V5_2.4.2/VVJJ_tests/WlvWjjVBF2jets_EWK_LO_tarball.tar.xz'),
-    args = cms.vstring('/afs/cern.ch/user/r/rasharma/work/public/GridPacks/aQGC_WPlepWMhadJJ_EWK_LO_NPle1_tarball_MadDefCard.tar.xz'),
-    nEvents = cms.untracked.uint32(5),
+    args = cms.vstring('/afs/cern.ch/user/r/rasharma/work/public/GridPacks/New/aQGC_WPlepWMhadJJ_EWK_LO_SM_tarball.tar.xz'),
+    nEvents = cms.untracked.uint32(51),
     numberOfParameters = cms.uint32(1),
     outputFile = cms.string('cmsgrid_final.lhe'),
     scriptName = cms.FileInPath('GeneratorInterface/LHEInterface/data/run_generic_tarball_cvmfs.sh')
@@ -147,3 +126,5 @@ process.schedule = cms.Schedule(process.lhe_step,process.generation_step,process
 for path in process.paths:
 	if path in ['lhe_step']: continue
 	getattr(process,path)._seq = process.ProductionFilterSequence * getattr(process,path)._seq 
+
+
