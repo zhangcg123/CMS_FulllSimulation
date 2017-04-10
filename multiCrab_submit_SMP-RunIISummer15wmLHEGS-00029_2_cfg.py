@@ -13,15 +13,15 @@ config.JobType.psetName = 'SMP-RunIISummer15wmLHEGS-00029_Hadronization_1_cfg.py
 config.JobType.inputFiles = ['/afs/cern.ch/user/r/rasharma/work/public/GridPacks/aQGC_WPlepWMhadJJ_EWK_LO_NPle1_tarball_MadDefCard.tar.xz']
 config.Data.outputPrimaryDataset = 'aQGC_WPlepWMhadJJ_EWK_DefaultCut_Pythia8CUEP8M1_13TeV_Madgraph'
 config.Data.splitting = 'EventBased'
-config.Data.unitsPerJob = 2000
-NJOBS = 1000  # This is not a configuration parameter, but an auxiliary variable that we use in the next line.
+config.Data.unitsPerJob = 600
+NJOBS = 4995  # This is not a configuration parameter, but an auxiliary variable that we use in the next line.
 config.Data.totalUnits = config.Data.unitsPerJob * NJOBS
-config.Data.outLFNDirBase = '/store/user/%s/CMSSW_FullSimulation/' % (getUsernameFromSiteDB())
+config.Data.outLFNDirBase = '/store/user/%s/CMSSW_FullSimulation_April2017/' % (getUsernameFromSiteDB())
 config.Data.publication = False
 config.Data.outputDatasetTag = 'RunIISummer15wmLHEGS'
 #config.Data.additional_input_files = '/afs/cern.ch/user/r/rasharma/work/aQGC_Studies/MC_SampleGeneration/LHEproduction/WlvWjjVBF2jets_EWK_LO_tarball.tar.xz'
 config.Site.storageSite = 'T3_US_FNALLPC'
-config.Site.whitelist = ['T2_CH_CERN', 'T2_IT_Pisa', 'T2_RU_JINR','T2_DE_RWTH']
+#config.Site.whitelist = ['T2_CH_CERN', 'T2_IT_Pisa', 'T2_RU_JINR','T2_DE_RWTH']
 
 #NB: SAMPLES HAVE TO BE UPDATED!
 
@@ -36,30 +36,37 @@ if __name__ == '__main__':
 
     #########    From now on that's what users should modify: this is the a-la-CRAB2 configuration part.
 
-    config.General.requestName = 'aQGC_WPlepWMhadJJ_EWK_CutssWW_Pythia8CUEP8M1_13TeV_Madgraph'
-    config.JobType.psetName =  'SMP-RunIISummer15wmLHEGS-00029_Hadronization_2c_cfg.py'
-    config.JobType.inputFiles = ['/afs/cern.ch/user/r/rasharma/work/public/GridPacks/aQGC_WPlepWMhadJJ_EWK_LO_NPle1_tarball_RunCard_ssWW.tar.xz']
-    config.Data.outputPrimaryDataset = 'aQGC_WPlepWMhadJJ_EWK_CutssWW_Pythia8CUEP8M1_13TeV_Madgraph'
+    config.General.requestName = 'aQGC_WPlepWMhadJJ_EWK_SM_DefaultCut_Pythia8CUEP8M1_13TeV_Madgraph'
+    config.JobType.psetName =  'SMP-RunIISummer15wmLHEGS-00029_Hadronization_1_cfg.py'
+    config.JobType.inputFiles = ['/afs/cern.ch/user/r/rasharma/work/public/GridPacks/New/aQGC_WPlepWMhadJJ_EWK_LO_SM_tarball.tar.xz']
+    config.Data.outputPrimaryDataset = 'aQGC_WPlepWMhadJJ_EWK_SM_DefaultCut_Pythia8CUEP8M1_13TeV_Madgraph'
     from multiprocessing import Process
     p = Process(target=submit, args=(config,))
     p.start()
     p.join()
 
-
-    config.General.requestName = 'aQGC_WPlepWMhadJJ_EWK_CutssWWVBF_Pythia8CUEP8M1_13TeV_Madgraph'
-    config.JobType.psetName =  'SMP-RunIISummer15wmLHEGS-00029_Hadronization_3c_cfg.py'
-    config.JobType.inputFiles = ['/afs/cern.ch/user/r/rasharma/work/public/GridPacks/aQGC_WPlepWMhadJJ_EWK_LO_NPle1_tarball_RunCard_ssWW_VBFcut.tar.xz']
-    config.Data.outputPrimaryDataset = 'aQGC_WPlepWMhadJJ_EWK_CutssWWVBF_Pythia8CUEP8M1_13TeV_Madgraph'
+    config.General.requestName = 'aQGC_WPlepWMhadJJ_EWK_SM_mjj200_Pythia8CUEP8M1_13TeV_Madgraph'
+    config.JobType.psetName =  'SMP-RunIISummer15wmLHEGS-00029_Hadronization_2_cfg.py'
+    config.JobType.inputFiles = ['/afs/cern.ch/user/r/rasharma/work/public/GridPacks/New/aQGC_WPlepWMhadJJ_EWK_LO_SM_RunCardChanged_tarball.tar.xz']
+    config.Data.outputPrimaryDataset = 'aQGC_WPlepWMhadJJ_EWK_SM_mjj200_Pythia8CUEP8M1_13TeV_Madgraph'
     from multiprocessing import Process
     p = Process(target=submit, args=(config,))
     p.start()
     p.join()
 
+    config.General.requestName = 'aQGC_WPlepWMhadJJ_EWK_LO_NPle1_DefaultCut_Pythia8CUEP8M1_13TeV_Madgraph'
+    config.JobType.psetName =  'SMP-RunIISummer15wmLHEGS-00029_Hadronization_3_cfg.py'
+    config.JobType.inputFiles = ['/afs/cern.ch/user/r/rasharma/work/public/GridPacks/New/aQGC_WPlepWMhadJJ_EWK_LO_NPle1_DefaultRunCard_tarball.tar.xz']
+    config.Data.outputPrimaryDataset = 'aQGC_WPlepWMhadJJ_EWK_LO_NPle1_DefaultCut_Pythia8CUEP8M1_13TeV_Madgraph'
+    from multiprocessing import Process
+    p = Process(target=submit, args=(config,))
+    p.start()
+    p.join()
 
-    config.General.requestName = 'aQGC_WPlepWMhadJJ_EWK_CutssWWTighterVBF_Pythia8CUEP8M1_13TeV_Madgraph'
-    config.JobType.psetName =  'SMP-RunIISummer15wmLHEGS-00029_Hadronization_4c_cfg.py'
-    config.JobType.inputFiles = ['/afs/cern.ch/user/r/rasharma/work/public/GridPacks/aQGC_WPlepWMhadJJ_EWK_LO_NPle1_tarball_RunCard_ssWW_tigherVBFcut.tar.xz']
-    config.Data.outputPrimaryDataset = 'aQGC_WPlepWMhadJJ_EWK_CutssWWTighterVBF_Pythia8CUEP8M1_13TeV_Madgraph'
+    config.General.requestName = 'aQGC_WPlepWMhadJJ_EWK_LO_NPle1_mjj200_Pythia8CUEP8M1_13TeV_Madgraph'
+    config.JobType.psetName =  'SMP-RunIISummer15wmLHEGS-00029_Hadronization_4_cfg.py'
+    config.JobType.inputFiles = ['/afs/cern.ch/user/r/rasharma/work/public/GridPacks/New/aQGC_WPlepWMhadJJ_EWK_LO_NPle1_RunCardChanged_tarball.tar.xz']
+    config.Data.outputPrimaryDataset = 'aQGC_WPlepWMhadJJ_EWK_LO_NPle1_mjj200_Pythia8CUEP8M1_13TeV_Madgraph'
     from multiprocessing import Process
     p = Process(target=submit, args=(config,))
     p.start()
