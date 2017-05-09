@@ -7,3 +7,12 @@
 	* **For each gridpack you need to create seperate configuration file and put the path of corresponding gridpack.**
 	* **Input gridpack should be placed in the public area of lxplus**
 	* **Input path of gridpack in crab configuration and in pythia8 configuration file should be identical**
+
+## Crab Commands:
+
+	voms-proxy-init
+	source /cvmfs/cms.cern.ch/crab3/crab.sh
+	crab status <dir>
+	crab submit <dir>
+	crab report <dir>
+
