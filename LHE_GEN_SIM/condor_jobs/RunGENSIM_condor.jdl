@@ -1,0 +1,12 @@
+Executable = RunGENSIM_condor.sh
+Universe = vanilla
+Requirements =FileSystemDomain=="fnal.gov" && Arch=="X86_64"
+Notification = ERROR
+Should_Transfer_Files = YES
+WhenToTransferOutput = ON_EXIT
+transfer_input_files = RunGENSIM_condor.sh,SMP-RunIISummer15wmLHEGS-00029_Hadronization_1_cfg.py.bkup,aQGC_WPlepWMhadJJ_EWK_LO_NPle1_mjj100pt10_tarball.tar.xz
+x509userproxy = $ENV(X509_USER_PROXY)
+Output = aQGC_WPlepWMhadJJ_EWK_LO_NPle1_tarball_MadDefCard_$(Process)_new2.stdout
+Error  = aQGC_WPlepWMhadJJ_EWK_LO_NPle1_tarball_MadDefCard_$(Process)_new2.stdout
+Arguments = inputFiles=_$(Process)_
+Queue 1000

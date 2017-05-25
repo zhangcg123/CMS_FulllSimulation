@@ -1,3 +1,5 @@
+*.stdout
+
 # Byte-compiled / optimized / DLL files
 *.tar.xz
 __pycache__/
