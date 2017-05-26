@@ -18,4 +18,4 @@ config.Data.outLFNDirBase = '/store/group/lnujj/WpWm_aQGC_Ntuples_Ram/CMSSW_Full
 config.Data.publication = True
 config.Data.outputDatasetTag = 'RunIISummer15wmLHEGS-MCRUN2_71_V1-v1'
 config.Site.storageSite = 'T3_US_FNALLPC'
-config.Site.whitelist = ['T2_CH_CERN','T3_US_FNALLPC']
+config.Site.whitelist = ['T2_CH_CERN','T3_US_FNALLPC','T2_US_UCSD','T2_UK_SGrid_RALPP','T2_IT_Pisa','T2_DE_DESY','T2_RU_JINR','T2_DE_RWTH','T2_US_Wisconsin']

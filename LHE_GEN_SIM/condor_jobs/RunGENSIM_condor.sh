@@ -19,7 +19,7 @@ echo "+=============================="
 # copy output to eos
 #OUTDIR=root://cmseos.fnal.gov//store/user/lnujj/WpWm_aQGC_Ntuples_Ram/condor_test/
 #OUTDIR=root://cmseos.fnal.gov//store/user/rasharma/condortest/
-OUTDIR=root://cmseos.fnal.gov//store/user/rasharma/CMSSW_FullSimulation_April2017/New_21May2017/WPlepWMhadJJ_EWK_LO_aQGC-FT-FS-FM_mjj100VJpT10_Pythia8CUEP8M1_13TeV_Madgraph/
+OUTDIR=root://cmseos.fnal.gov//store/user/rasharma/CMSSW_FullSimulation_April2017/New_21May2017/WPlepWMhadJJ_EWK_LO_aQGC-FT-FS-FM_mjj100VJpT10_Pythia8CUEP8M1_13TeV_Madgraph_ext1/
 echo "xrdcp output for condor"
 for FILE in *.root
 do

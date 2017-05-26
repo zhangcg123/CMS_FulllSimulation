@@ -4,6 +4,9 @@
 # Source: /local/reps/CMSSW/CMSSW/Configuration/Applications/python/ConfigBuilder.py,v 
 # with command line options: Configuration/GenProduction/python/SMP-RunIISummer15wmLHEGS-00090-fragment.py --fileout file:SMP-RunIISummer15wmLHEGS-00090.root --mc --eventcontent RAWSIM,LHE --customise SLHCUpgradeSimulations/Configuration/postLS1Customs.customisePostLS1,Configuration/DataProcessing/Utils.addMonitoring --datatier GEN-SIM,LHE --conditions MCRUN2_71_V1::All --beamspot Realistic50ns13TeVCollision --step LHE,GEN,SIM --magField 38T_PostLS1 --python_filename SMP-RunIISummer15wmLHEGS-00090_1_cfg.py --no_exec -n 41
 import FWCore.ParameterSet.Config as cms
+from FWCore.ParameterSet.VarParsing import VarParsing
+options = VarParsing ('analysis')
+options.parseArguments()
 
 process = cms.Process('SIM')
 
@@ -42,12 +45,15 @@ process.configurationMetadata = cms.untracked.PSet(
 )
 
 # Output definition
+#import sys
+#string=str(sys.argv[2])
+#string=str(options.inputFiles)
 
 process.RAWSIMoutput = cms.OutputModule("PoolOutputModule",
     splitLevel = cms.untracked.int32(0),
     eventAutoFlushCompressedSize = cms.untracked.int32(5242880),
     outputCommands = process.RAWSIMEventContent.outputCommands,
-    fileName = cms.untracked.string('file:SMP-RunIISummer15wmLHEGS-00090.root'),
+    fileName = cms.untracked.string('file:SMP-RunIISummer15wmLHEGS-00090'+str(options.inputFiles[0])+'.root'),
     dataset = cms.untracked.PSet(
         filterName = cms.untracked.string(''),
         dataTier = cms.untracked.string('GEN-SIM')
@@ -61,7 +67,7 @@ process.LHEoutput = cms.OutputModule("PoolOutputModule",
     splitLevel = cms.untracked.int32(0),
     eventAutoFlushCompressedSize = cms.untracked.int32(5242880),
     outputCommands = process.LHEEventContent.outputCommands,
-    fileName = cms.untracked.string('file:SMP-RunIISummer15wmLHEGS-00090_inLHE.root'),
+    fileName = cms.untracked.string('file:SMP-RunIISummer15wmLHEGS-00090_inLHE'+str(options.inputFiles[0])+'.root'),
     dataset = cms.untracked.PSet(
         filterName = cms.untracked.string(''),
         dataTier = cms.untracked.string('LHE')
@@ -101,14 +107,21 @@ process.generator = cms.EDFilter("Pythia8HadronizerFilter",
     )
 )
 
+import sys
+import random
+rng = random.SystemRandom()
+Rnum = rng.randint(1, 100000)
+import multiprocessing
+
+print "=======================> Number of CPUs = %i"%multiprocessing.cpu_count()
 
 process.externalLHEProducer = cms.EDProducer("ExternalLHEProducer",
-    nEvents = cms.untracked.uint32(41),
+    nEvents = cms.untracked.uint32(1),
     outputFile = cms.string('cmsgrid_final.lhe'),
     scriptName = cms.FileInPath('GeneratorInterface/LHEInterface/data/run_generic_tarball_cvmfs.sh'),
-    numberOfParameters = cms.uint32(1),
-    #args = cms.vstring('/cvmfs/cms.cern.ch/phys_generator/gridpacks/slc6_amd64_gcc481/13TeV/madgraph/V5_2.4.2/WWjj_SS_dim8_ewk/WWjj_SS_dim8_ewk_tarball.tar.xz')
-    args = cms.vstring('/afs/cern.ch/user/r/rasharma/work/public/GridPacks/New/aQGC_WPlepWMhadJJ_EWK_LO_NPle1_mjj100pt10_tarball.tar.xz')
+    numberOfParameters = cms.uint32(4),
+    #args = cms.vstring('/cvmfs/cms.cern.ch/phys_generator/gridpacks/slc6_amd64_gcc481/13TeV/madgraph/V5_2.4.2/WWjj_SS_dim8_ewk/WWjj_SS_dim8_ewk_tarball.tar.xz','10',str(Rnum))
+    args = cms.vstring('/uscms_data/d3/rasharma/aQGC_analysis/CMS_FulllSimulation_April2017/LHE_GEN/LHE_GEN_SIM/aQGC_WPlepWMhadJJ_EWK_LO_NPle1_mjj100pt10_tarball.tar.xz','10',str(Rnum),str(multiprocessing.cpu_count()))
 )
 
 

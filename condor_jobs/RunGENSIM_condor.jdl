@@ -1,11 +1,13 @@
-Executable = RunGENSIM_condor_$(Process).sh
+Executable = RunGENSIM_condor.sh
 Universe = vanilla
 Requirements =FileSystemDomain=="fnal.gov" && Arch=="X86_64"
 Notification = ERROR
 Should_Transfer_Files = YES
 WhenToTransferOutput = ON_EXIT
-transfer_input_files = RunGENSIM_condor_0.sh,RunGENSIM_condor_1.sh,RunGENSIM_condor_2.sh,RunGENSIM_condor_3.sh,SMP-RunIISummer15wmLHEGS-00029_Hadronization_1_cfg.py.bkup,SMP-RunIISummer15wmLHEGS-00029_Hadronization_2_cfg.py.bkup,SMP-RunIISummer15wmLHEGS-00029_Hadronization_3_cfg.py.bkup,SMP-RunIISummer15wmLHEGS-00029_Hadronization_4_cfg.py.bkup,aQGC_WPlepWMhadJJ_EWK_LO_NPle1_tarball_MadDefCard.tar.xz,aQGC_WPlepWMhadJJ_EWK_LO_NPle1_tarball_RunCard_ssWW.tar.xz,aQGC_WPlepWMhadJJ_EWK_LO_NPle1_tarball_RunCard_ssWW_VBFcut.tar.xz,aQGC_WPlepWMhadJJ_EWK_LO_NPle1_tarball_RunCard_ssWW_tigherVBFcut.tar.xz
+transfer_input_files = RunGENSIM_condor.sh, SMP-RunIISummer15wmLHEGS-00029_Hadronization_1_cfg.py.bkup, /uscms_data/d3/rasharma/aQGC_analysis/MC_SampleGeneration/RunCMSGridCommand/CMSSW_8_0_11/src/WPhadWMlepJJ_EWK_/WPhadWMlepJJ_EWK_LO_SM_mjj100_pTj10_tarball.tar.xz 
 x509userproxy = $ENV(X509_USER_PROXY)
-Output = aQGC_WPlepWMhadJJ_EWK_LO_NPle1_tarball_MadDefCard_$(Process).stdout
-Error  = aQGC_WPlepWMhadJJ_EWK_LO_NPle1_tarball_MadDefCard_$(Process).stdout
-Queue 4
+Output = WPlepWMhadJJ_EWK_LO_SM_mjj100_pTj10_tarball_MadDefCard_$(Process)_10k.stdout
+Error  = WPlepWMhadJJ_EWK_LO_SM_mjj100_pTj10_tarball_MadDefCard_$(Process)_10k.stdout
+Arguments = inputFiles=_$(Process)_10k
+notify_user = ${LOGNAME}@FNAL.GOV
+Queue 1
