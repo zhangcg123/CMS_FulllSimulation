@@ -1,0 +1,14 @@
+Executable = RunGENSIMRAW_condor.sh
+Universe = vanilla
+Requirements =FileSystemDomain=="fnal.gov" && Arch=="X86_64"
+Notification = ERROR
+Should_Transfer_Files = YES
+WhenToTransferOutput = ON_EXIT
+request_memory = 3000
+transfer_input_files = RunGENSIMRAW_condor.sh,SMP-RunIISummer16DR80Premix-00158_1_cfg.py
+x509userproxy = $ENV(X509_USER_PROXY)
+Output = gen-sim-raw_$(Process).stdout
+Error  = gen-sim-raw_$(Process).stdout
+Log  = gen-sim-raw_$(Process).log
+Arguments = inputFiles=_$(Process)_
+Queue 1000

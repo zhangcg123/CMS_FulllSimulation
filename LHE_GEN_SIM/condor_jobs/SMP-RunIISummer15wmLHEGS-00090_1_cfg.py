@@ -27,7 +27,7 @@ process.load('Configuration.StandardSequences.EndOfProcess_cff')
 process.load('Configuration.StandardSequences.FrontierConditions_GlobalTag_cff')
 
 process.maxEvents = cms.untracked.PSet(
-    input = cms.untracked.int32(10)
+    input = cms.untracked.int32(600)
 )
 
 # Input source
@@ -40,19 +40,17 @@ process.options = cms.untracked.PSet(
 # Production Info
 process.configurationMetadata = cms.untracked.PSet(
     version = cms.untracked.string('$Revision: 1.19 $'),
-    annotation = cms.untracked.string('Configuration/GenProduction/python/SMP-RunIISummer15wmLHEGS-00090-fragment.py nevts:41'),
+    annotation = cms.untracked.string('Configuration/GenProduction/python/SMP-RunIISummer15wmLHEGS-00090-fragment.py nevts:600'),
     name = cms.untracked.string('Applications')
 )
 
 # Output definition
-#import sys
-#string=str(sys.argv[2])
-#string=str(options.inputFiles)
 
 process.RAWSIMoutput = cms.OutputModule("PoolOutputModule",
     splitLevel = cms.untracked.int32(0),
     eventAutoFlushCompressedSize = cms.untracked.int32(5242880),
     outputCommands = process.RAWSIMEventContent.outputCommands,
+    #fileName = cms.untracked.string('file:SMP-RunIISummer15wmLHEGS-00090.root'),
     fileName = cms.untracked.string('file:SMP-RunIISummer15wmLHEGS-00090'+str(options.inputFiles[0])+'.root'),
     dataset = cms.untracked.PSet(
         filterName = cms.untracked.string(''),
@@ -67,6 +65,7 @@ process.LHEoutput = cms.OutputModule("PoolOutputModule",
     splitLevel = cms.untracked.int32(0),
     eventAutoFlushCompressedSize = cms.untracked.int32(5242880),
     outputCommands = process.LHEEventContent.outputCommands,
+    #fileName = cms.untracked.string('file:SMP-RunIISummer15wmLHEGS-00090_inLHE.root'),
     fileName = cms.untracked.string('file:SMP-RunIISummer15wmLHEGS-00090_inLHE'+str(options.inputFiles[0])+'.root'),
     dataset = cms.untracked.PSet(
         filterName = cms.untracked.string(''),
@@ -107,21 +106,20 @@ process.generator = cms.EDFilter("Pythia8HadronizerFilter",
     )
 )
 
+
 import sys
 import random
 rng = random.SystemRandom()
-Rnum = rng.randint(1, 100000)
-import multiprocessing
-
-print "=======================> Number of CPUs = %i"%multiprocessing.cpu_count()
+#Rnum = rng.randint(0, sys.maxint)
+Rnum = rng.randint(1,100000)
 
 process.externalLHEProducer = cms.EDProducer("ExternalLHEProducer",
-    nEvents = cms.untracked.uint32(10),
+    nEvents = cms.untracked.uint32(600),
     outputFile = cms.string('cmsgrid_final.lhe'),
     scriptName = cms.FileInPath('GeneratorInterface/LHEInterface/data/run_generic_tarball_cvmfs.sh'),
-    numberOfParameters = cms.uint32(4),
-    #args = cms.vstring('/cvmfs/cms.cern.ch/phys_generator/gridpacks/slc6_amd64_gcc481/13TeV/madgraph/V5_2.4.2/WWjj_SS_dim8_ewk/WWjj_SS_dim8_ewk_tarball.tar.xz','10',str(Rnum))
-    args = cms.vstring('/uscms_data/d3/rasharma/aQGC_analysis/CMS_FulllSimulation_April2017/LHE_GEN/LHE_GEN_SIM/WPlepZhadJJ_EWK_LO_SM_mjj100_pTj10_tarball.tar.xz','10',str(Rnum),str(multiprocessing.cpu_count()))
+    numberOfParameters = cms.uint32(3),
+    #args = cms.vstring('/cvmfs/cms.cern.ch/phys_generator/gridpacks/slc6_amd64_gcc481/13TeV/madgraph/V5_2.4.2/WWjj_SS_dim8_ewk/WWjj_SS_dim8_ewk_tarball.tar.xz')
+    args = cms.vstring('/storage/local/data1/condor/execute/dir_486316/aQGC_WPlepWMhadJJ_EWK_LO_NPle1_mjj100pt10_tarball.tar.xz','600',str(Rnum))
 )
 
 
@@ -135,8 +133,7 @@ process.RAWSIMoutput_step = cms.EndPath(process.RAWSIMoutput)
 process.LHEoutput_step = cms.EndPath(process.LHEoutput)
 
 # Schedule definition
-#process.schedule = cms.Schedule(process.lhe_step,process.generation_step,process.genfiltersummary_step,process.simulation_step,process.endjob_step,process.RAWSIMoutput_step,process.LHEoutput_step)
-process.schedule = cms.Schedule(process.lhe_step,process.generation_step,process.genfiltersummary_step,process.simulation_step,process.endjob_step,process.LHEoutput_step)
+process.schedule = cms.Schedule(process.lhe_step,process.generation_step,process.genfiltersummary_step,process.simulation_step,process.endjob_step,process.RAWSIMoutput_step,process.LHEoutput_step)
 # filter all path with the production filter sequence
 for path in process.paths:
 	if path in ['lhe_step']: continue

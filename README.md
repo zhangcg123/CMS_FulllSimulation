@@ -16,3 +16,7 @@
 	crab submit <dir>
 	crab report <dir>
 
+# Full sim chain Ref:
+
+	https://cms-pdmv.cern.ch/mcm/chained_requests?contains=SMP-RunIISummer15wmLHEGS-00090&page=0&shown=15
+

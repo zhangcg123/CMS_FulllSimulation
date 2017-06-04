@@ -4,9 +4,11 @@ Requirements =FileSystemDomain=="fnal.gov" && Arch=="X86_64"
 Notification = ERROR
 Should_Transfer_Files = YES
 WhenToTransferOutput = ON_EXIT
-transfer_input_files = RunGENSIM_condor.sh,SMP-RunIISummer15wmLHEGS-00029_Hadronization_1_cfg.py.bkup,aQGC_WPlepWMhadJJ_EWK_LO_NPle1_mjj100pt10_tarball.tar.xz
+request_memory = 3000
+transfer_input_files = RunGENSIM_condor.sh,SMP-RunIISummer15wmLHEGS-00029_Hadronization_1_cfg.py.bkup,aQGC_WPlepWMhadJJ_EWK_LO_NPle1_mjj100pt10_tarball.tar.xz,SMP-RunIISummer16DR80Premix-00158_1_cfg.py,SMP-RunIISummer16DR80Premix-00158_2_cfg.py,SMP-RunIISummer16MiniAODv2-00156_1_cfg.py
 x509userproxy = $ENV(X509_USER_PROXY)
 Output = aQGC_WPlepWMhadJJ_EWK_LO_NPle1_tarball_MadDefCard_$(Process)_new2.stdout
 Error  = aQGC_WPlepWMhadJJ_EWK_LO_NPle1_tarball_MadDefCard_$(Process)_new2.stdout
+Log  = mini_aod_$(Process).log
 Arguments = inputFiles=_$(Process)_aQGC
-Queue 1
+Queue 1000

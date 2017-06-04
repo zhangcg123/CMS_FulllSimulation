@@ -1,0 +1,14 @@
+Executable = RunMiniAOD.sh
+Universe = vanilla
+Requirements =FileSystemDomain=="fnal.gov" && Arch=="X86_64"
+Notification = ERROR
+Should_Transfer_Files = YES
+WhenToTransferOutput = ON_EXIT
+request_memory = 3000
+transfer_input_files = RunMiniAOD.sh,SMP-RunIISummer16MiniAODv2-00156_1_cfg.py
+x509userproxy = $ENV(X509_USER_PROXY)
+Output = mini_aod_$(Process).stdout
+Error  = mini_aod_$(Process).stdout
+Log  = mini_aod_$(Process).log
+Arguments = inputFiles=_$(Process)_
+Queue 1000
