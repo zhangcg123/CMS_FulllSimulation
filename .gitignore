@@ -1,4 +1,6 @@
 *.stdout
+*.root
+*.log
 
 # Byte-compiled / optimized / DLL files
 *.tar.xz

@@ -15,6 +15,21 @@ echo "List all root files = "
 ls *.root
 echo "List all files"
 ls 
+OUTDIR=root://cmseos.fnal.gov//store/user/rasharma/CMSSW_FullSimulation_April2017/New_21May2017/LHE_EDM/WPhadWMlepJJ_EWK_LO_aQGC-FT-FS-FM_mjj100VJpT10_Pythia8CUEP8M1_13TeV_Madgraph_ext1/
+echo "xrdcp output for condor"
+for FILE in SMP-*inLHE*.root
+do
+  echo "xrdcp -f ${FILE} ${OUTDIR}/${FILE}"
+  xrdcp -f ${FILE} ${OUTDIR}/${FILE} 2>&1
+  XRDEXIT=$?
+  if [[ $XRDEXIT -ne 0 ]]; then
+    rm *.root
+    echo "exit code $XRDEXIT, failure in xrdcp"
+    exit $XRDEXIT
+  fi
+  rm ${FILE}
+done
+date
 echo "+=============================="
 
 echo "Loading CMSSW env"
