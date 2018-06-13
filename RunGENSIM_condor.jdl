@@ -1,0 +1,13 @@
+Executable = RunGENSIM_condor.sh 
+Universe = vanilla
+Notification = ERROR
+Should_Transfer_Files = YES
+WhenToTransferOutput = ON_EXIT
+Transfer_Input_Files = RunGENSIM_condor.sh 
+x509userproxy = $ENV(X509_USER_PROXY)
+request_memory = 3000
+Output = aQGC_WPlepWMhadJJ_EWK_LO_NPle1_tarball_MadDefCard_$(Process)_new2.stdout
+Error  = aQGC_WPlepWMhadJJ_EWK_LO_NPle1_tarball_MadDefCard_$(Process)_new2.stdout
+Log  = mini_aod_$(Process).log
+Arguments = inputFiles=_$(Process)_aQGC
+Queue 5
