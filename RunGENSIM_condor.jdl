@@ -3,12 +3,12 @@ Universe = vanilla
 Notification = ERROR
 Should_Transfer_Files = YES
 WhenToTransferOutput = ON_EXIT
-Transfer_Input_Files = RunGENSIM_condor.sh 
+Transfer_Input_Files = RunGENSIM_condor.sh, B2G-RunIIAutumn18DRPremix-02890_1_cfg.py, B2G-RunIIAutumn18MiniAOD-02887_1_cfg.py, B2G-RunIIFall18wmLHEGS-01725_1_cfg.py, B2G-RunIIAutumn18DRPremix-02890_2_cfg.py, B2G-RunIIAutumn18NanoAODv6-01916_1_cfg.py
 x509userproxy = $ENV(X509_USER_PROXY)
 request_memory = 3000
 request_cpus = 8
-Output = aQGC_WPlepWMhadJJ_EWK_LO_NPle1_tarball_MadDefCard_$(Process)_new2.stdout
-Error  = aQGC_WPlepWMhadJJ_EWK_LO_NPle1_tarball_MadDefCard_$(Process)_new2.stdout
-Log  = mini_aod_$(Process).log
+Output = condor_logs/GF_HH_Benchmark1_$(Process).stdout
+Error  = condor_logs/GF_HH_Benchmark1_$(Process).stdout
+Log  = condor_logs/GF_HH_Benchmark1_$(Process).log
 Arguments = $(Cluster) $(Process)
-Queue 5
+Queue 50
