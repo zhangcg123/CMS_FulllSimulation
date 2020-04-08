@@ -1,86 +1,52 @@
-# CMSSW Full Simulation
+# General Information
 
-1. Copy scripts form McM
-	1. Total three scripts for all sequence from gridpack to MiniAOD
-1. Run the scripts to get `.py` files. When you run the three shell script you will get 4 `.py` files.
-1. Modify python files for command line inputs.
-1. Alongwith in the first script where the input is gridpack there we have to modify few things:
-	1. Modify python files for command line inputs.
-	2. make sure number of events is same at all three places.
-	3. add random generator. [link](https://github.com/ram1123/CMS_FulllSimulation/blob/master/FullSim/SMP-RunIISummer15wmLHEGS-00029_Hadronization_1_cfg.py.bkup#L110-L114)
-	1. also change the number of parameters.
-	1. See this patch: [link](https://github.com/ram1123/CMS_FulllSimulation/blob/master/FullSim/SMP-RunIISummer15wmLHEGS-00029_Hadronization_1_cfg.py.bkup#L110-L123)
-	1. In line (here: [link](https://github.com/ram1123/CMS_FulllSimulation/blob/master/FullSim/SMP-RunIISummer15wmLHEGS-00029_Hadronization_1_cfg.py.bkup#L122) ) the second parameter is totoal number of events and third parameters is the random number.
-	1. Also, add `.bkup` at last in the name of first `.py` file.
-	1. Make sure that input and output file names remain consistent in going from one step to another.
-1. run all `*.py` files as `cmsRun <configure-file-name>.py inputFiles=_0` 
+1. Select one campaign. For example I choose: [https://cms-pdmv.cern.ch/mcm/requests?prepid=B2G-RunIIAutumn18NanoAODv6-01916&page=0&shown=127](https://cms-pdmv.cern.ch/mcm/requests?prepid=B2G-RunIIAutumn18NanoAODv6-01916&page=0&shown=127)
 
-# How to Run Locally
+2. Go to the chains and select each chain one by one and do the following for each of them.
 
-## Step1: release CMSSW 7X and 8X version
+   1. On "Actions" click on "view chains": you will see a chain of McM processes connected by arrows and ending with your chosen NanoAOD sample.
+   1. For *each* of these processes (click on them one by one), on "Actions" click on "get setup command" to get a piece of bash script - in this case 4 pieces.
+   1. Save each pieced in different `<filename>_1.sh, <filename>_2.sh, <filename>_3.sh, <filename>_4.sh` files.
+   1. Brief introduction of each file is given here[^intro_files].
 
-	cmsrel CMSSW_7_1_21_patch2
-	cd CMSSW_7_1_21_patch2/src
-	cmsenv
-	cd ../../
-	cmsrel CMSSW_8_0_21
-	cd CMSSW_8_0_21/src
-	cmsenv
-	cd ../../
-	cd FullSim
+[^intro_files]: First step is known as the GEN-SIM step. Second one is DR1 and DR2 third one will generate MINIAOD and finally the fourth one will create the NanoAOD files.
 
-## Step2:
+3. Now run each script one by one. First script will give you one *.py file 2nd one should give you two *.py files and third and fourth one should give you one *.py files each.
 
-1. copy file `HIG-RunIISummer15wmLHEGS-00157_1_cfg.py.bkup` to `HIG-RunIISummer15wmLHEGS-00157_1_cfg.py`.
-2. Modify the gridpack path in file `HIG-RunIISummer15wmLHEGS-00157_1_cfg.py.bkup`
-3. Run it using `cmsRun HIG-RunIISummer15wmLHEGS-00157_1_cfg.py inputFiles=_0`
+3. Now append the random number generator at the end of first *.py file. So, that each time when you generate the GEN-SIM file from the gridpack it will generate independent set of events else it will just generate the same copies each time.
+   
+   patch to add random number generator:
+   
+   ```bash
+   cat << EOF >> testLHE-GEN.py
+   from IOMC.RandomEngine.RandomServiceHelper import RandomNumberServiceHelper
+   randSvc = RandomNumberServiceHelper(process.RandomNumberGeneratorService)
+   randSvc.populate()
+   EOF
+   ```
+   
+   where, `testLHE-GEN.py` is the name of first configuration file.
 
-## Step2: Submit CMS Full sim production using condor
+4. Test each python configuration one after another in appropriate sequence to check if its fine. *There might be an issue of name of input root files. The script might not taking the input of previous step automatically because of naming difference. So you need to fix it.*
 
-1. Copy here the gridpack 
-2. Modify cmssw 7x and 8x path in RunFullSIM_condor.sh
-3. Add gridpack name in RunFullSIM_condor.jdl 
-4. Modify gridpack name in SMP-RunIISummer15wmLHEGS-00029_Hadronization_1_cfg.py.bkup
-5. Modify store area path where the output will be saved in file: RunFullSIM_condor.sh. You have to add path at two places. One for saving LHE (edm format) files and another for MiniAOD files.
-5. Submit condor jobs using command:
+5. Finally submit the condor job.
 
-		condor_submit RunFullSIM_condor.jdl
-	
 
-# Some Important commands
+# Condor Job Submission
 
-1. Find all files larger than 30 MB and delete it.
+```bash
+git clone git@github.com:ram1123/CMS_FulllSimulation.git
+cd CMS_FulllSimulation
+```
 
-	find . -type f -size +30M -exec rm {} \;
-	
-2. To ask for each file before delete:
+1. place all the python configuration file inside the directory `CMS_FulllSimulation`.
+2. Update the `RunGENSIM_condor.jdl` and `RunGENSIM_condor.sh` files.
+    1. In file `RunGENSIM_condor.sh` you need to replace the python configuration file name at appropriate places.
+    1. Add the appropriate number of events and jobs. For example:
+        1. If you want 50k events then you can change `Queue 50` in the jdl file and put 1000 in each python configuration files.
+1. submit the condor jobs.
 
-	find . -type f -size +30M -exec rm -i {} \;
-
-## Condor commands
-
-1. To submit condor jobs:
-
-		condor_submit <FileName>.jdl
-2. To check how the condor job is proceeding:
-
-		condor_tail <ProcessID>.<jobID> -f
-3. To check status of condor jobs:
-
-		condor_q -submitter <username>
-4. To kill the condor jobs:
-
-		condor_rm <ProcessID>.<jobID>
-	
-
-## Crab Commands:
-
-	voms-proxy-init
-	source /cvmfs/cms.cern.ch/crab3/crab.sh
-	crab status <dir>
-	crab submit <dir>
-	crab report <dir>
-
-# Full sim chain Ref:
-
-	https://cms-pdmv.cern.ch/mcm/chained_requests?contains=SMP-RunIISummer15wmLHEGS-00090&page=0&shown=15
+```bash
+voms-proxy-init --voms cms --valid 168:00
+condor_submit RunGENSIM_condor.jdl
+```
