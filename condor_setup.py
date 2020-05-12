@@ -8,7 +8,7 @@ import gridpack_lists as sampleLists
 from color_style import style
 
 """Fields changed by user"""
-StringToChange = 'NonResonantModel_Test1'
+StringToChange = 'NonResonantModel_Test11'
 condor_file_name = StringToChange
 storeAreaPath = '/store/user/rasharma/double-higgs/SignalSample/'
 storeAreaPathWithEOSString = '/eos/uscms/store/user/rasharma/double-higgs/SignalSample/'
@@ -35,33 +35,30 @@ for key in sampleLists.models:
         print storeDir
         infoLogFiles.SendGitLogAndPatchToEos(storeDir)
 
-# print(sampleLists.models)
-outJdl = open(condor_file_name+'.jdl','w')
-outJdl.write('Executable = '+condor_file_name+'.sh')
-outJdl.write('\n'+'Universe = vanilla')
-outJdl.write('\n'+'Notification = ERROR')
-outJdl.write('\n'+'Should_Transfer_Files = YES')
-outJdl.write('\n'+'WhenToTransferOutput = ON_EXIT')
-outJdl.write('\n'+'Transfer_Input_Files = '+condor_file_name+'.sh, B2G-RunIIFall18wmLHEGS-01725_1_cfg.py, B2G-RunIIAutumn18DRPremix-02890_1_cfg.py, B2G-RunIIAutumn18DRPremix-02890_2_cfg.py, B2G-RunIIAutumn18MiniAOD-02887_1_cfg.py B2G-RunIIAutumn18NanoAODv6-01916_1_cfg.py')
-outJdl.write('\n'+'x509userproxy = $ENV(X509_USER_PROXY)')
-outJdl.write('\n'+'request_memory = 12000')
-outJdl.write('\n'+'request_cpus = 8')
+
+import condorJobHelper
+listOfFilesToTransfer = 'B2G-RunIIFall18wmLHEGS-01725_1_cfg.py, B2G-RunIIAutumn18DRPremix-02890_1_cfg.py, B2G-RunIIAutumn18DRPremix-02890_2_cfg.py, B2G-RunIIAutumn18MiniAOD-02887_1_cfg.py, B2G-RunIIAutumn18NanoAODv6-01916_1_cfg.py'
+condorJobHelper = condorJobHelper.condorJobHelper(condor_file_name,
+                                                  listOfFilesToTransfer,
+                                                  12000,    # request_memory
+                                                  8,    # request_cpus
+                                                  output_log_path,
+                                                  'test',   # logFileName
+                                                  "",   # Arguments
+                                                  1 # Queue
+                                                  )
+jdlFile = condorJobHelper.jdlFileCreater()
+print '==> jdlfile name: ',jdlFile
 
 for key in sampleLists.models:
   print(key)
   if key == 'radion':
     for gridpcaks in sampleLists.models[key]:
-        # print(gridpcaks)
         DirName = gridpcaks.split('/')[-1].split('_')
         DirName = DirName[0]+'_'+DirName[1]+'_'+DirName[2]+'_'+DirName[3]
-        print DirName
-        outJdl.write('\n'+'Output = '+output_log_path+os.sep+DirName+'.stdout')
-        outJdl.write('\n'+'Error  = '+output_log_path+os.sep+DirName+'.stdout')
-        outJdl.write('\n'+'Log  = '+output_log_path+os.sep+DirName+'.log')
-        outJdl.write('\n'+'Arguments = $(Cluster) $(Process) B2G-RunIIFall18wmLHEGS-01725_1_cfg.py '+DirName+os.sep+dirTag + '  '+gridpcaks)
-        # print('\n'+'Arguments = $(Cluster) $(Process) B2G-RunIIFall18wmLHEGS-01725_1_cfg.py '+DirName+os.sep+dirTag)
-        outJdl.write('\n'+'Queue 50')
-outJdl.close()
+        condorJobHelper.logFileName = DirName
+        condorJobHelper.Arguments = 'B2G-RunIIFall18wmLHEGS-01725_1_cfg.py '+DirName+os.sep+dirTag+ '  '+gridpcaks.replace('/','\/')
+        jdlFile = condorJobHelper.jdlFileAppendLogInfo()
 
 outScript = open(condor_file_name+".sh","w");
 
@@ -97,7 +94,7 @@ outScript.write('\n'+'echo "==> List all files..."')
 outScript.write('\n'+'ls ')
 outScript.write('\n'+'echo "+=============================="')
 outScript.write('\n'+'echo "==> Running GEN-SIM step (1001 events will be generated)"')
-outScript.write("\n"+'sed -i "s/args = cms.vstring.*/args = cms.vstring(\\"${5}\\")/g" B2G-RunIIFall18wmLHEGS-01725_1_cfg.py ')
+outScript.write("\n"+'sed -i "s/args = cms.vstring.*/args = cms.vstring(\\"${5}\\"),/g" B2G-RunIIFall18wmLHEGS-01725_1_cfg.py ')
 outScript.write('\n'+'echo "+=============================="')
 outScript.write('\n'+'cat B2G-RunIIFall18wmLHEGS-01725_1_cfg.py  ')
 outScript.write('\n'+'echo "+=============================="')
@@ -188,6 +185,7 @@ outScript.write('\n'+'echo "Done."')
 outScript.write('\n'+'date')
 
 outScript.close();
+
 os.system("chmod 777 "+condor_file_name+".sh");
 
 print "===> Set Proxy Using:";
