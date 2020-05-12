@@ -1,4 +1,6 @@
 *.stdout
+*.jdl
+*.sh
 *.root
 *.log
 
