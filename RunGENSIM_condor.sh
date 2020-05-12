@@ -4,7 +4,7 @@ echo "Running on: `uname -a`"
 echo "System software: `cat /etc/redhat-release`"
 source /cvmfs/cms.cern.ch/cmsset_default.sh
 
-OUTDIR=root://cmseos.fnal.gov//store/user/rasharma/double-higgs/SignalSample/GF_HH_Benchmark3/
+OUTDIR=root://cmseos.fnal.gov//store/user/rasharma/double-higgs/SignalSample/${4}/
 
 echo "======="
 ls
@@ -21,7 +21,8 @@ echo "==> List all files..."
 ls 
 echo "+=============================="
 echo "==> Running GEN-SIM step (1001 events will be generated)"
-cmsRun B2G-RunIIFall18wmLHEGS-01725_1_cfg.py 
+#cmsRun B2G-RunIIFall18wmLHEGS-01725_1_cfg.py 
+cmsRun ${3} 
 echo "List all root files = "
 ls *.root
 echo "List all files"

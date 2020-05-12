@@ -8,7 +8,7 @@ import gridpack_lists as sampleLists
 from color_style import style
 
 """Fields changed by user"""
-StringToChange = 'NonResonantModel_Test11'
+StringToChange = 'NonResonantModel_Radion'
 condor_file_name = StringToChange
 storeAreaPath = '/store/user/rasharma/double-higgs/SignalSample/'
 storeAreaPathWithEOSString = '/eos/uscms/store/user/rasharma/double-higgs/SignalSample/'
@@ -40,12 +40,12 @@ import condorJobHelper
 listOfFilesToTransfer = 'B2G-RunIIFall18wmLHEGS-01725_1_cfg.py, B2G-RunIIAutumn18DRPremix-02890_1_cfg.py, B2G-RunIIAutumn18DRPremix-02890_2_cfg.py, B2G-RunIIAutumn18MiniAOD-02887_1_cfg.py, B2G-RunIIAutumn18NanoAODv6-01916_1_cfg.py'
 condorJobHelper = condorJobHelper.condorJobHelper(condor_file_name,
                                                   listOfFilesToTransfer,
-                                                  12000,    # request_memory
-                                                  8,    # request_cpus
+                                                  12000,    # request_memory 12000
+                                                  8,    # request_cpus 8
                                                   output_log_path,
                                                   'test',   # logFileName
                                                   "",   # Arguments
-                                                  1 # Queue
+                                                  50 # Queue
                                                   )
 jdlFile = condorJobHelper.jdlFileCreater()
 print '==> jdlfile name: ',jdlFile

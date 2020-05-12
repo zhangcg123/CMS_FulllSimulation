@@ -3,6 +3,10 @@
 *.sh
 *.root
 *.log
+docker_stderror
+screenlog.0
+summary.dat
+gitDiff.patch
 
 # Byte-compiled / optimized / DLL files
 *.tar.xz
