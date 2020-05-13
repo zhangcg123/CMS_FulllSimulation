@@ -47,7 +47,7 @@ condorJobHelper = condorJobHelper.condorJobHelper(condor_file_name,
                                                   "",   # Arguments
                                                   50 # Queue
                                                   )
-jdlFile = condorJobHelper.jdlFileCreater()
+jdlFile = condorJobHelper.jdlFileHeaderCreater()
 print '==> jdlfile name: ',jdlFile
 
 for key in sampleLists.models:
