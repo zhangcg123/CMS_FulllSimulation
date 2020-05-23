@@ -1,3 +1,24 @@
+# Condor Job Submission
+
+```bash
+git clone git@github.com:ram1123/CMS_FulllSimulation.git
+cd CMS_FulllSimulation
+git submodule init
+git submodule update
+```
+
+1. place all the python configuration file inside the directory `CMS_FulllSimulation`.
+2. Update the `RunGENSIM_condor.jdl` and `RunGENSIM_condor.sh` files.
+    1. In file `RunGENSIM_condor.sh` you need to replace the python configuration file name at appropriate places.
+    1. Add the appropriate number of events and jobs. For example:
+        1. If you want 50k events then you can change `Queue 50` in the jdl file and put 1000 in each python configuration files.
+1. submit the condor jobs.
+
+```bash
+voms-proxy-init --voms cms --valid 168:00
+condor_submit RunGENSIM_condor.jdl
+```
+
 # General Information
 
 1. Select one campaign. For example I choose: [https://cms-pdmv.cern.ch/mcm/requests?prepid=B2G-RunIIAutumn18NanoAODv6-01916&page=0&shown=127](https://cms-pdmv.cern.ch/mcm/requests?prepid=B2G-RunIIAutumn18NanoAODv6-01916&page=0&shown=127)
@@ -32,23 +53,3 @@
 5. Finally submit the condor job.
 
 
-# Condor Job Submission
-
-```bash
-git clone git@github.com:ram1123/CMS_FulllSimulation.git
-cd CMS_FulllSimulation
-git submodule init
-git submodule update
-```
-
-1. place all the python configuration file inside the directory `CMS_FulllSimulation`.
-2. Update the `RunGENSIM_condor.jdl` and `RunGENSIM_condor.sh` files.
-    1. In file `RunGENSIM_condor.sh` you need to replace the python configuration file name at appropriate places.
-    1. Add the appropriate number of events and jobs. For example:
-        1. If you want 50k events then you can change `Queue 50` in the jdl file and put 1000 in each python configuration files.
-1. submit the condor jobs.
-
-```bash
-voms-proxy-init --voms cms --valid 168:00
-condor_submit RunGENSIM_condor.jdl
-```
