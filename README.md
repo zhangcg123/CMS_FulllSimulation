@@ -38,6 +38,7 @@
 git clone git@github.com:ram1123/CMS_FulllSimulation.git
 cd CMS_FulllSimulation
 git submodule init
+git submodule update
 ```
 
 1. place all the python configuration file inside the directory `CMS_FulllSimulation`.
