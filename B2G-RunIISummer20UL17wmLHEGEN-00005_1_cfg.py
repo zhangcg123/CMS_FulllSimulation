@@ -2,7 +2,7 @@
 # using: 
 # Revision: 1.19 
 # Source: /local/reps/CMSSW/CMSSW/Configuration/Applications/python/ConfigBuilder.py,v 
-# with command line options: Configuration/GenProduction/python/B2G-RunIISummer20UL17wmLHEGEN-00005-fragment.py --python_filename B2G-RunIISummer20UL17wmLHEGEN-00005_1_cfg.py --eventcontent RAWSIM,LHE --customise Configuration/DataProcessing/Utils.addMonitoring --datatier GEN,LHE --fileout file:B2G-RunIISummer20UL17wmLHEGEN-00005.root --conditions 106X_mc2017_realistic_v6 --beamspot Realistic25ns13TeVEarly2017Collision --step LHE,GEN --geometry DB:Extended --era Run2_2017 --no_exec --mc -n 500
+# with command line options: Configuration/GenProduction/python/B2G-RunIISummer20UL17wmLHEGEN-00005-fragment.py --python_filename B2G-RunIISummer20UL17wmLHEGEN-00005_1_cfg.py --eventcontent RAWSIM,LHE --customise Configuration/DataProcessing/Utils.addMonitoring --datatier GEN,LHE --fileout file:B2G-RunIISummer20UL17wmLHEGEN-00005.root --conditions 106X_mc2017_realistic_v6 --beamspot Realistic25ns13TeVEarly2017Collision --step LHE,GEN --geometry DB:Extended --era Run2_2017 --no_exec --mc -n 50
 import FWCore.ParameterSet.Config as cms
 
 from Configuration.Eras.Era_Run2_2017_cff import Run2_2017
@@ -24,7 +24,7 @@ process.load('Configuration.StandardSequences.EndOfProcess_cff')
 process.load('Configuration.StandardSequences.FrontierConditions_GlobalTag_cff')
 
 process.maxEvents = cms.untracked.PSet(
-    input = cms.untracked.int32(500)
+    input = cms.untracked.int32(50)
 )
 
 # Input source
@@ -36,7 +36,7 @@ process.options = cms.untracked.PSet(
 
 # Production Info
 process.configurationMetadata = cms.untracked.PSet(
-    annotation = cms.untracked.string('Configuration/GenProduction/python/B2G-RunIISummer20UL17wmLHEGEN-00005-fragment.py nevts:500'),
+    annotation = cms.untracked.string('Configuration/GenProduction/python/B2G-RunIISummer20UL17wmLHEGEN-00005-fragment.py nevts:50'),
     name = cms.untracked.string('Applications'),
     version = cms.untracked.string('$Revision: 1.19 $')
 )
@@ -85,7 +85,22 @@ process.generator = cms.EDFilter("Pythia8HadronizerFilter",
             'pythia8PSweightsSettings', 
             'processParameters'
         ),
-        processParameters = cms.vstring('TimeShower:nPartonsInBorn = 2'),
+        processParameters = cms.vstring(
+            'JetMatching:setMad = off',
+            'JetMatching:scheme = 1',
+            'JetMatching:merge = on',
+            'JetMatching:jetAlgorithm = 2',
+            'JetMatching:etaJetMax = 999.',
+            'JetMatching:coneRadius = 1.',
+            'JetMatching:slowJetPower = 1',
+            'JetMatching:qCut = 30.', #this is the actual merging scale
+            'JetMatching:doFxFx = on',
+            'JetMatching:qCutME = 10.',#this must match the ptj cut in the lhe generation step
+            'JetMatching:nQmatch = 5', #4 corresponds to 4-flavour scheme (no matching of b-quarks), 5 for 5-flavour scheme
+            'JetMatching:nJetMax = 2', #number of partons in born matrix element for highest multiplicity
+            'TimeShower:mMaxGamma = 4.0',
+            # 'TimeShower:nPartonsInBorn = 2',
+        ),
         pythia8CP5Settings = cms.vstring(
             'Tune:pp 14', 
             'Tune:ee 7', 
@@ -155,7 +170,7 @@ process.generator = cms.EDFilter("Pythia8HadronizerFilter",
 
 process.externalLHEProducer = cms.EDProducer("ExternalLHEProducer",
     args = cms.vstring('/afs/cern.ch/user/r/rasharma/work/h4L_analysis/CMSFullSim/CMS_FulllSimulation/ggh012j_5f_NLO_FXFX_M125_amcatnloFXFX_JHUGenV714_pythia8_slc6_amd64_gcc630_CMSSW_9_3_16_tarball.tar.xz'),
-    nEvents = cms.untracked.uint32(500),
+    nEvents = cms.untracked.uint32(50),
     numberOfParameters = cms.uint32(1),
     outputFile = cms.string('cmsgrid_final.lhe'),
     scriptName = cms.FileInPath('GeneratorInterface/LHEInterface/data/run_generic_tarball_cvmfs.sh')
