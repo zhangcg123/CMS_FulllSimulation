@@ -1,3 +1,5 @@
+voms_proxy.txt
+CMSSW_*/
 *.stdout
 *.jdl
 *.sh

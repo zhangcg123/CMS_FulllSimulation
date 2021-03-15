@@ -1,3 +1,23 @@
+# H4L Info
+
+- Full sim scripts download from: [https://cms-pdmv.cern.ch/mcm/chained_requests?prepid=B2G-chain_RunIISummer20UL17wmLHEGEN_flowRunIISummer20UL17SIM_flowRunIISummer20UL17DIGIPremix_flowRunIISummer20UL17HLT_flowRunIISummer20UL17RECO_flowRunIISummer20UL17MiniAODv2-00068&page=0&shown=15](https://cms-pdmv.cern.ch/mcm/chained_requests?prepid=B2G-chain_RunIISummer20UL17wmLHEGEN_flowRunIISummer20UL17SIM_flowRunIISummer20UL17DIGIPremix_flowRunIISummer20UL17HLT_flowRunIISummer20UL17RECO_flowRunIISummer20UL17MiniAODv2-00068&page=0&shown=15)
+   - wmLHEGEN (CMSSW_10_6_18): https://cms-pdmv.cern.ch/mcm/public/restapi/requests/get_setup/B2G-RunIISummer20UL17wmLHEGEN-00005
+   - SIM (CMSSW_10_6_17_patch1): https://cms-pdmv.cern.ch/mcm/public/restapi/requests/get_setup/B2G-RunIISummer20UL17SIM-00001
+   - DIGIPremix (CMSSW_10_6_17_patch1): https://cms-pdmv.cern.ch/mcm/public/restapi/requests/get_setup/B2G-RunIISummer20UL17DIGIPremix-00001
+   - HLT (CMSSW_9_4_14_UL_patch1): https://cms-pdmv.cern.ch/mcm/public/restapi/requests/get_setup/B2G-RunIISummer20UL17HLT-00001
+   - RECO (CMSSW_10_6_17_patch1): https://cms-pdmv.cern.ch/mcm/public/restapi/requests/get_setup/B2G-RunIISummer20UL17RECO-00001
+   - MiniAOD (CMSSW_10_6_20): https://cms-pdmv.cern.ch/mcm/public/restapi/requests/get_setup/B2G-RunIISummer20UL17MiniAODv2-00068
+
+## Inputs
+
+1. Number of steps:
+  - Step:1: CMSSWVersion, Python Config, Number of events, RandomSeed, Gridpack Name with path, Output File name
+  - Step:2: CMSSWVersion, Python Config
+  - Step:3: CMSSWVersion, Python Config
+  - Step:4: CMSSWVersion, Python Config
+  - Step:5: CMSSWVersion, Python Config
+  - Step:6: CMSSWVersion, Python Config
+
 # General Information
 
 For the CMSSW full simulation, first choose the campaign which is closest to your analysis.
