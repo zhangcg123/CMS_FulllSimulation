@@ -24,7 +24,7 @@ process.load('Configuration.StandardSequences.EndOfProcess_cff')
 process.load('Configuration.StandardSequences.FrontierConditions_GlobalTag_cff')
 
 process.maxEvents = cms.untracked.PSet(
-    input = cms.untracked.int32(50)
+    input = cms.untracked.int32(70)
 )
 
 # Input source
@@ -36,7 +36,7 @@ process.options = cms.untracked.PSet(
 
 # Production Info
 process.configurationMetadata = cms.untracked.PSet(
-    annotation = cms.untracked.string('Configuration/GenProduction/python/B2G-RunIISummer20UL17wmLHEGEN-00005-fragment.py nevts:50'),
+    annotation = cms.untracked.string('Configuration/GenProduction/python/B2G-RunIISummer20UL17wmLHEGEN-00005-fragment.py nevts:70'),
     name = cms.untracked.string('Applications'),
     version = cms.untracked.string('$Revision: 1.19 $')
 )
@@ -169,7 +169,7 @@ process.generator = cms.EDFilter("Pythia8HadronizerFilter",
 
 
 process.externalLHEProducer = cms.EDProducer("ExternalLHEProducer",
-    args = cms.vstring('/afs/cern.ch/user/r/rasharma/work/h4L_analysis/CMSFullSim/CMS_FulllSimulation/ggh012j_5f_NLO_FXFX_M125_amcatnloFXFX_JHUGenV714_pythia8_slc6_amd64_gcc630_CMSSW_9_3_16_tarball.tar.xz'),
+    args = cms.vstring("/afs/cern.ch/user/r/rasharma/work/h4L_analysis/CMSFullSim/CMS_FulllSimulation/ggh012j_5f_NLO_FXFX_M125_amcatnloFXFX_JHUGenV714_pythia8_slc6_amd64_gcc630_CMSSW_9_3_16_tarball.tar.xz"),
     nEvents = cms.untracked.uint32(50),
     numberOfParameters = cms.uint32(1),
     outputFile = cms.string('cmsgrid_final.lhe'),
