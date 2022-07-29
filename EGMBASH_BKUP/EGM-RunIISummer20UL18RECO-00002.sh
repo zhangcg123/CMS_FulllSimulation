@@ -48,5 +48,5 @@ EVENTS=20
 
 
 # cmsDriver command
-cmsDriver.py  --python_filename EGM-RunIISummer20UL18RECO-00002_1_cfg.py --eventcontent RECO --customise Configuration/DataProcessing/Utils.addMonitoring --datatier RECO --fileout file:EGM-RunIISummer20UL18RECO-00002.root --conditions 106X_upgrade2018_realistic_v11_L1v1 --step RAW2DIGI,L1Reco,RECO,RECOSIM,EI --geometry DB:Extended --filein file:EGM-RunIISummer20UL18HLT-00002.root --era Run2_2018 --runUnscheduled --no_exec --mc -n $EVENTS || exit $? ;
+cmsDriver.py  --python_filename EGM-RunIISummer20UL18RECO-00002_1_cfg.py --eventcontent RECO --customise Configuration/DataProcessing/Utils.addMonitoring --datatier AODSIM --fileout file:EGM-RunIISummer20UL18RECO-00002.root --conditions 106X_upgrade2018_realistic_v11_L1v1 --step RAW2DIGI,L1Reco,RECO,RECOSIM,EI --geometry DB:Extended --filein file:EGM-RunIISummer20UL18HLT-00002.root --era Run2_2018 --runUnscheduled --no_exec --mc -n $EVENTS || exit $? ;
 

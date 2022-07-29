@@ -1,0 +1,329 @@
+WARNING: In non-interactive mode release checks e.g. deprecated releases, production architectures are disabled.
+WARNING: In non-interactive mode release checks e.g. deprecated releases, production architectures are disabled.
+**** Following environment variables are going to be unset.
+       CMSSW_FULL_RELEASE_BASE
+stty: standard input: Inappropriate ioctl for device
+stty: standard input: Inappropriate ioctl for device
+stty: standard input: Inappropriate ioctl for device
+stty: standard input: Inappropriate ioctl for device
+stty: standard input: Inappropriate ioctl for device
+stty: standard input: Inappropriate ioctl for device
+29-Jul-2022 08:12:24 CEST  Initiating request to open LHE file cmsgrid_final.lhe
+29-Jul-2022 08:12:24 CEST  Successfully opened LHE file cmsgrid_final.lhe
+%MSG-w LogicError:  Pythia8HadronizerFilter:generator@beginRun  29-Jul-2022 08:12:24 CEST Run: 1
+::getByLabel: An attempt was made to read a Run product before endRun() was called.
+The product is of type 'LHERunInfoProduct'.
+The specified ModuleLabel was 'externalLHEProducer'.
+The specified productInstanceName was ''.
+
+%MSG
+Begin processing the 1st record. Run 1, Event 1, LumiSection 1 on stream 0 at 29-Jul-2022 08:12:27.816 CEST
+Begin processing the 2nd record. Run 1, Event 2, LumiSection 1 on stream 0 at 29-Jul-2022 08:12:27.910 CEST
+Begin processing the 3rd record. Run 1, Event 3, LumiSection 1 on stream 0 at 29-Jul-2022 08:12:34.679 CEST
+Begin processing the 4th record. Run 1, Event 4, LumiSection 1 on stream 0 at 29-Jul-2022 08:12:35.580 CEST
+Begin processing the 5th record. Run 1, Event 5, LumiSection 1 on stream 0 at 29-Jul-2022 08:12:38.500 CEST
+Begin processing the 6th record. Run 1, Event 6, LumiSection 1 on stream 0 at 29-Jul-2022 08:12:40.243 CEST
+Begin processing the 7th record. Run 1, Event 7, LumiSection 1 on stream 0 at 29-Jul-2022 08:12:40.282 CEST
+Begin processing the 8th record. Run 1, Event 8, LumiSection 1 on stream 0 at 29-Jul-2022 08:12:41.813 CEST
+Begin processing the 9th record. Run 1, Event 9, LumiSection 1 on stream 0 at 29-Jul-2022 08:12:41.841 CEST
+Begin processing the 10th record. Run 1, Event 10, LumiSection 1 on stream 0 at 29-Jul-2022 08:12:51.886 CEST
+Begin processing the 11th record. Run 1, Event 11, LumiSection 1 on stream 0 at 29-Jul-2022 08:12:51.954 CEST
+Begin processing the 12th record. Run 1, Event 12, LumiSection 1 on stream 0 at 29-Jul-2022 08:12:53.193 CEST
+Begin processing the 13th record. Run 1, Event 13, LumiSection 1 on stream 0 at 29-Jul-2022 08:12:54.295 CEST
+Begin processing the 14th record. Run 1, Event 14, LumiSection 1 on stream 0 at 29-Jul-2022 08:12:57.461 CEST
+Begin processing the 15th record. Run 1, Event 15, LumiSection 1 on stream 0 at 29-Jul-2022 08:12:58.424 CEST
+Begin processing the 16th record. Run 1, Event 16, LumiSection 1 on stream 0 at 29-Jul-2022 08:12:58.454 CEST
+Begin processing the 17th record. Run 1, Event 17, LumiSection 1 on stream 0 at 29-Jul-2022 08:13:00.825 CEST
+Begin processing the 18th record. Run 1, Event 18, LumiSection 1 on stream 0 at 29-Jul-2022 08:13:00.866 CEST
+Begin processing the 19th record. Run 1, Event 19, LumiSection 1 on stream 0 at 29-Jul-2022 08:13:03.020 CEST
+Begin processing the 20th record. Run 1, Event 20, LumiSection 1 on stream 0 at 29-Jul-2022 08:13:04.533 CEST
+29-Jul-2022 08:13:05 CEST  Closed LHE file cmsgrid_final.lhe
+
+------------------------------------
+GenXsecAnalyzer:
+------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+Overall cross-section summary 
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Process		xsec_before [pb]		passed	nposw	nnegw	tried	nposw	nnegw 	xsec_match [pb]			accepted [%]	 event_eff [%]
+0		6.004e+03 +/- 1.097e+01		2	2	0	3	3	0	4.002e+03 +/- 1.634e+03		66.7 +/- 27.2	66.7 +/- 27.2
+1		3.448e+03 +/- 1.054e+01		2	1	1	11	5	6	0.000e+00 +/- 0.000e+00		-100.0 +/- 141.4	18.2 +/- 11.6
+2		1.637e+03 +/- 1.034e+01		3	1	2	6	1	5	0.000e+00 +/- 0.000e+00		-100.0 +/- 34.2	50.0 +/- 20.4
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+Total		1.109e+04 +/- 1.839e+01		7	4	3	20	9	11	-1.109e+04 +/- 0.000e+00		-100.0 +/- 217.9	35.0 +/- 10.7
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Before matching: total cross section = 1.109e+04 +- 1.839e+01 pb
+After matching: total cross section = -1.109e+04 +- 0.000e+00 pb
+Matching efficiency = 0.3 +/- 0.1   [TO BE USED IN MCM]
+Filter efficiency (taking into account weights)= (25259.7) / (25259.7) = 1.000e+00 +- 0.000e+00
+Filter efficiency (event-level)= (7) / (7) = 1.000e+00 +- 0.000e+00    [TO BE USED IN MCM]
+
+After filter: final cross section = 0.000e+00 +- 0.000e+00 pb
+After filter: final fraction of events with negative weights = 4.286e-01 +- 7.872e-02
+After filter: final equivalent lumi for 1M events (1/fb) = 0.000e+00 +- 0.000e+00
+TimeReport> Time report complete in 140.2 seconds
+ Time Summary: 
+ - Min event:   0.028126
+ - Max event:   10.0403
+ - Avg event:   1.89056
+ - Total loop:  129.784
+ - Total init:  9.58508
+ - Total job:   140.2
+ - EventSetup Lock:   1.28746e-05
+ - EventSetup Get:   0.00534701
+ Event Throughput: 0.154102 ev/s
+ CPU Summary: 
+ - Total loop:  129.438
+ - Total init:  4.96227
+ - Total extra: 0
+ - Total job:   134.989
+ Processing Summary: 
+ - Number of Events:  20
+ - Number of Global Begin Lumi Calls:  1
+ - Number of Global Begin Run Calls: 1
+
+
+=============================================
+
+MessageLogger Summary
+
+ type     category        sev    module        subroutine        count    total
+ ---- -------------------- -- ---------------- ----------------  -----    -----
+    1 GenXSecAnalyzer      -w GenXSecAnalyzer:                      17       17
+    2 LogicError           -w Pythia8Hadronize                       1        1
+    3 TimeReport           -e AfterModEndJob                         1        1
+    4 fileAction           -s ExternalLHEProdu                       2        2
+    5 fileAction           -s ExternalLHEProdu                       1        1
+
+ type    category    Examples: run/evt        run/evt          run/evt
+ ---- -------------------- ---------------- ---------------- ----------------
+    1 GenXSecAnalyzer      PostGlobalEndRun PostGlobalEndRun PostGlobalEndRun
+    2 LogicError           Run: 1                            
+    3 TimeReport           PostGlobalEndRun                  
+    4 fileAction           Run: 1           Run: 1           
+    5 fileAction           End Run: 1                        
+
+Severity    # Occurrences   Total Occurrences
+--------    -------------   -----------------
+Warning                18                  18
+Error                   1                   1
+System                  3                   3
+
+dropped waiting message count 0
+WARNING: In non-interactive mode release checks e.g. deprecated releases, production architectures are disabled.
+29-Jul-2022 08:13:16 CEST  Initiating request to open file file:EGM-RunIISummer20UL18wmLHEGEN-00001.root
+29-Jul-2022 08:13:17 CEST  Successfully opened file file:EGM-RunIISummer20UL18wmLHEGEN-00001.root
+Begin processing the 1st record. Run 1, Event 2, LumiSection 1 on stream 0 at 29-Jul-2022 08:13:54.694 CEST
+Begin processing the 2nd record. Run 1, Event 5, LumiSection 1 on stream 0 at 29-Jul-2022 08:14:28.369 CEST
+Begin processing the 3rd record. Run 1, Event 9, LumiSection 1 on stream 0 at 29-Jul-2022 08:14:47.221 CEST
+Begin processing the 4th record. Run 1, Event 12, LumiSection 1 on stream 0 at 29-Jul-2022 08:15:23.436 CEST
+Begin processing the 5th record. Run 1, Event 13, LumiSection 1 on stream 0 at 29-Jul-2022 08:15:35.904 CEST
+Begin processing the 6th record. Run 1, Event 14, LumiSection 1 on stream 0 at 29-Jul-2022 08:15:55.393 CEST
+Begin processing the 7th record. Run 1, Event 16, LumiSection 1 on stream 0 at 29-Jul-2022 08:16:04.065 CEST
+29-Jul-2022 08:16:20 CEST  Closed file file:EGM-RunIISummer20UL18wmLHEGEN-00001.root
+TimeReport> Time report complete in 192.473 seconds
+ Time Summary: 
+ - Min event:   8.67024
+ - Max event:   36.2117
+ - Avg event:   20.8025
+ - Total loop:  182.493
+ - Total init:  9.86757
+ - Total job:   192.473
+ - EventSetup Lock:   1.12057e-05
+ - EventSetup Get:   8.66267
+ Event Throughput: 0.0383576 ev/s
+ CPU Summary: 
+ - Total loop:  177.568
+ - Total init:  5.21819
+ - Total extra: 0
+ - Total job:   182.893
+ Processing Summary: 
+ - Number of Events:  7
+ - Number of Global Begin Lumi Calls:  1
+ - Number of Global Begin Run Calls: 1
+
+
+=============================================
+
+MessageLogger Summary
+
+ type     category        sev    module        subroutine        count    total
+ ---- -------------------- -- ---------------- ----------------  -----    -----
+    1 TimeReport           -e AfterModEndJob                         1        1
+    2 fileAction           -s file_close                             1        1
+    3 fileAction           -s file_open                              2        2
+
+ type    category    Examples: run/evt        run/evt          run/evt
+ ---- -------------------- ---------------- ---------------- ----------------
+    1 TimeReport           PostGlobalEndRun                  
+    2 fileAction           PostGlobalEndRun                  
+    3 fileAction           pre-events       pre-events       
+
+Severity    # Occurrences   Total Occurrences
+--------    -------------   -----------------
+Error                   1                   1
+System                  3                   3
+
+dropped waiting message count 0
+WARNING: In non-interactive mode release checks e.g. deprecated releases, production architectures are disabled.
+WARNING: There already exists /pool/condor/dir_92703/CMSSW_10_6_17_patch1 area for SCRAM_ARCH slc7_amd64_gcc700.
+29-Jul-2022 08:16:29 CEST  Initiating request to open file file:EGM-RunIISummer20UL18SIM-00002.root
+29-Jul-2022 08:16:30 CEST  Successfully opened file file:EGM-RunIISummer20UL18SIM-00002.root
+29-Jul-2022 08:16:33 CEST  Initiating request to open file root://eoscms.cern.ch//eos/cms/store/mc/RunIISummer20ULPrePremix/Neutrino_E-10_gun/PREMIX/UL18_106X_upgrade2018_realistic_v11_L1v1-v2/230011/C4CBEBEC-8865-6C47-9C84-03BC43E51E3E.root
+%MSG-w XrdAdaptor:  PreMixingModule:mixData@ctor 29-Jul-2022 08:16:35 CEST  pre-events
+Data is served from cern.ch instead of original site eoscms
+%MSG
+29-Jul-2022 08:16:35 CEST  Successfully opened file root://eoscms.cern.ch//eos/cms/store/mc/RunIISummer20ULPrePremix/Neutrino_E-10_gun/PREMIX/UL18_106X_upgrade2018_realistic_v11_L1v1-v2/230011/C4CBEBEC-8865-6C47-9C84-03BC43E51E3E.root
+Begin processing the 1st record. Run 1, Event 2, LumiSection 1 on stream 0 at 29-Jul-2022 08:16:46.721 CEST
+29-Jul-2022 08:17:56 CEST  Closed file root://eoscms.cern.ch//eos/cms/store/mc/RunIISummer20ULPrePremix/Neutrino_E-10_gun/PREMIX/UL18_106X_upgrade2018_realistic_v11_L1v1-v2/230011/C4CBEBEC-8865-6C47-9C84-03BC43E51E3E.root
+29-Jul-2022 08:17:56 CEST  Initiating request to open file root://eoscms.cern.ch//eos/cms/store/mc/RunIISummer20ULPrePremix/Neutrino_E-10_gun/PREMIX/UL18_106X_upgrade2018_realistic_v11_L1v1-v2/10004/AAA016AD-CF39-4E46-A209-4C125314FCC2.root
+%MSG-w XrdAdaptor:  PreMixingModule:mixData 29-Jul-2022 08:17:58 CEST  Run: 1 Event: 2
+Data is served from cern.ch instead of original site eoscms
+%MSG
+29-Jul-2022 08:17:58 CEST  Successfully opened file root://eoscms.cern.ch//eos/cms/store/mc/RunIISummer20ULPrePremix/Neutrino_E-10_gun/PREMIX/UL18_106X_upgrade2018_realistic_v11_L1v1-v2/10004/AAA016AD-CF39-4E46-A209-4C125314FCC2.root
+Begin processing the 2nd record. Run 1, Event 5, LumiSection 1 on stream 0 at 29-Jul-2022 08:18:08.341 CEST
+Begin processing the 3rd record. Run 1, Event 9, LumiSection 1 on stream 0 at 29-Jul-2022 08:18:11.737 CEST
+Begin processing the 4th record. Run 1, Event 12, LumiSection 1 on stream 0 at 29-Jul-2022 08:18:15.442 CEST
+Begin processing the 5th record. Run 1, Event 13, LumiSection 1 on stream 0 at 29-Jul-2022 08:18:18.877 CEST
+Begin processing the 6th record. Run 1, Event 14, LumiSection 1 on stream 0 at 29-Jul-2022 08:18:22.767 CEST
+Begin processing the 7th record. Run 1, Event 16, LumiSection 1 on stream 0 at 29-Jul-2022 08:18:25.801 CEST
+29-Jul-2022 08:18:29 CEST  Closed file file:EGM-RunIISummer20UL18SIM-00002.root
+29-Jul-2022 08:18:29 CEST  Closed file root://eoscms.cern.ch//eos/cms/store/mc/RunIISummer20ULPrePremix/Neutrino_E-10_gun/PREMIX/UL18_106X_upgrade2018_realistic_v11_L1v1-v2/10004/AAA016AD-CF39-4E46-A209-4C125314FCC2.root
+TimeReport> Time report complete in 128.135 seconds
+ Time Summary: 
+ - Min event:   3.02871
+ - Max event:   81.6124
+ - Avg event:   14.6854
+ - Total loop:  107.055
+ - Total init:  20.9768
+ - Total job:   128.135
+ - EventSetup Lock:   0.000128031
+ - EventSetup Get:   19.7253
+ Event Throughput: 0.0653873 ev/s
+ CPU Summary: 
+ - Total loop:  98.0334
+ - Total init:  9.70418
+ - Total extra: 0
+ - Total job:   107.839
+ Processing Summary: 
+ - Number of Events:  7
+ - Number of Global Begin Lumi Calls:  1
+ - Number of Global Begin Run Calls: 1
+
+
+=============================================
+
+MessageLogger Summary
+
+ type     category        sev    module        subroutine        count    total
+ ---- -------------------- -- ---------------- ----------------  -----    -----
+    1 XrdAdaptor           -w PreMixingModule:                       1        1
+    2 XrdAdaptor           -w PreMixingModule:                       1        1
+    3 TimeReport           -e AfterModEndJob                         1        1
+    4 fileAction           -s PreMixingModule:                       3        3
+    5 fileAction           -s PreMixingModule:                       2        2
+    6 fileAction           -s PreMixingModule:                       1        1
+    7 fileAction           -s file_close                             1        1
+    8 fileAction           -s file_open                              2        2
+
+ type    category    Examples: run/evt        run/evt          run/evt
+ ---- -------------------- ---------------- ---------------- ----------------
+    1 XrdAdaptor           1/2                               
+    2 XrdAdaptor           pre-events                        
+    3 TimeReport           PostGlobalEndRun                  
+    4 fileAction           1/2              1/2              1/2
+    5 fileAction           pre-events       pre-events       
+    6 fileAction           PostGlobalEndRun                  
+    7 fileAction           PostGlobalEndRun                  
+    8 fileAction           pre-events       pre-events       
+
+Severity    # Occurrences   Total Occurrences
+--------    -------------   -----------------
+Warning                 2                   2
+Error                   1                   1
+System                  9                   9
+
+dropped waiting message count 0
+WARNING: In non-interactive mode release checks e.g. deprecated releases, production architectures are disabled.
+**** Following environment variables are going to be unset.
+       CMSSW_FULL_RELEASE_BASE
+       GENEVA_DATA_DIR
+       COMPILER_PATH
+       MLAS_DYNAMIC_CPU_ARCH
+29-Jul-2022 08:18:46 CEST  Initiating request to open file file:EGM-RunIISummer20UL18DIGIPremix-00002.root
+29-Jul-2022 08:18:48 CEST  Successfully opened file file:EGM-RunIISummer20UL18DIGIPremix-00002.root
+%MSG-e TkDetLayers:   TSGFromL2Muon:hltL3NoFiltersNoVtxTrajSeedOIHit@streamBeginRun  29-Jul-2022 08:19:43 CEST Run: 1 Stream: 0
+ ForwardDiskSectorBuilderFromDet: Trying to build Petal Wedge from Dets at different z positions !! Delta_z = -0.950417
+%MSG
+Begin processing the 1st record. Run 1, Event 2, LumiSection 1 on stream 0 at 29-Jul-2022 08:19:45.353 CEST
+Begin processing the 2nd record. Run 1, Event 5, LumiSection 1 on stream 0 at 29-Jul-2022 08:19:48.867 CEST
+Begin processing the 3rd record. Run 1, Event 9, LumiSection 1 on stream 0 at 29-Jul-2022 08:19:50.299 CEST
+Begin processing the 4th record. Run 1, Event 12, LumiSection 1 on stream 0 at 29-Jul-2022 08:19:51.311 CEST
+Begin processing the 5th record. Run 1, Event 13, LumiSection 1 on stream 0 at 29-Jul-2022 08:19:53.051 CEST
+Begin processing the 6th record. Run 1, Event 14, LumiSection 1 on stream 0 at 29-Jul-2022 08:19:54.284 CEST
+Begin processing the 7th record. Run 1, Event 16, LumiSection 1 on stream 0 at 29-Jul-2022 08:19:54.989 CEST
+29-Jul-2022 08:19:57 CEST  Closed file file:EGM-RunIISummer20UL18DIGIPremix-00002.root
+TimeReport> Time report complete in 87.5363 seconds
+ Time Summary: 
+ - Min event:   0.690215
+ - Max event:   3.49913
+ - Avg event:   1.6888
+ - Total loop:  23.5045
+ - Total init:  61.8824
+ - Total job:   87.5363
+ - EventSetup Lock:   0.000155687
+ - EventSetup Get:   15.4835
+ Event Throughput: 0.297815 ev/s
+ CPU Summary: 
+ - Total loop:  20.5582
+ - Total init:  55.6557
+ - Total extra: 0
+ - Total job:   78.3553
+ Processing Summary: 
+ - Number of Events:  7
+ - Number of Global Begin Lumi Calls:  1
+ - Number of Global Begin Run Calls: 1
+
+
+=============================================
+
+MessageLogger Summary
+
+ type     category        sev    module        subroutine        count    total
+ ---- -------------------- -- ---------------- ----------------  -----    -----
+    1 TimeReport           -e AfterModEndJob                         1        1
+    2 TkDetLayers          -e TSGFromL2Muon:hl                       1        1
+    3 fileAction           -s file_close                             1        1
+    4 fileAction           -s file_open                              2        2
+
+ type    category    Examples: run/evt        run/evt          run/evt
+ ---- -------------------- ---------------- ---------------- ----------------
+    1 TimeReport           PostGlobalEndRun                  
+    2 TkDetLayers          Run: 1 Stream: 0                  
+    3 fileAction           PostGlobalEndRun                  
+    4 fileAction           pre-events       pre-events       
+
+Severity    # Occurrences   Total Occurrences
+--------    -------------   -----------------
+Error                   2                   2
+System                  3                   3
+
+dropped waiting message count 0
+WARNING: In non-interactive mode release checks e.g. deprecated releases, production architectures are disabled.
+WARNING: There already exists /pool/condor/dir_92703/CMSSW_10_6_17_patch1 area for SCRAM_ARCH slc7_amd64_gcc700.
+**** Following environment variables are going to be unset.
+       CMS_ORACLEOCCI_LIB
+       COMPILER_RUNTIME_OBJECTS
+29-Jul-2022 08:20:15 CEST  Initiating request to open file file:EGM-RunIISummer20UL18HLT-00002.root
+29-Jul-2022 08:20:16 CEST  Successfully opened file file:EGM-RunIISummer20UL18HLT-00002.root
+29-Jul-2022 08:20:50 CEST  Closed file file:EGM-RunIISummer20UL18HLT-00002.root
+----- Begin Fatal Exception 29-Jul-2022 08:20:50 CEST-----------------------
+An exception of category 'FatalRootError' occurred while
+   [0] Constructing the EventProcessor
+   [1] Constructing module: class=RecoTauCleaner label='pfTausProducerSansRefs'
+   Additional Info:
+      [a] Fatal Root Error: @SUB=TSystem::ExpandFileName
+input: $HOME/.root.mimes, output: $HOME/.root.mimes
+
+----- End Fatal Exception -------------------------------------------------
+mv: cannot stat 'EGM-RunIISummer20UL18RECO-00002.root': No such file or directory

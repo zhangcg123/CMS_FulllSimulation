@@ -7,38 +7,54 @@ class condorJobHelper(object):
                  listOfFilesToTransfer="",
                  request_memory=0,
                  request_cpus=0,
-                 logFilePath = 'test',
-                 logFileName = 'test',
+                 Destination = 'TEST',
                  Arguments="",
-                 Queue=1):
+                 Queue=1,
+		 jobflavour = 'espresso'):
         self.fileName = fileName
         self.listOfFilesToTransfer = listOfFilesToTransfer
         self.request_memory = request_memory
         self.request_cpus = request_cpus
-        self.logFilePath = logFilePath
-        self.logFileName = logFileName
+        self.Destination = Destination
         self.Arguments = Arguments
         self.Queue = Queue
+	self.jobflavour = jobflavour
 
     def jdlFileHeaderCreater(self):
         outJdl = open(self.fileName+'.jdl','w')
-        outJdl.write('Executable = '+self.fileName+'.sh')
+        outJdl.write('Proxy_path = /afs/cern.ch/user/c/chenguan/private/voms_proxy.txt')
+	outJdl.write('\n')
+	outJdl.write('Executable = '+self.fileName+'.sh')
+	outJdl.write('\n')
         outJdl.write('\n'+'Universe = vanilla')
+	outJdl.write('\n')
         outJdl.write('\n'+'Notification = ERROR')
+	outJdl.write('\n')
         outJdl.write('\n'+'Should_Transfer_Files = YES')
+	outJdl.write('\n')
         outJdl.write('\n'+'WhenToTransferOutput = ON_EXIT')
+	outJdl.write('\n')
         outJdl.write('\n'+'Transfer_Input_Files = '+self.fileName+'.sh, ' + self.listOfFilesToTransfer)
-        outJdl.write('\n'+'x509userproxy = $ENV(X509_USER_PROXY)')
+	outJdl.write('\n')
+        #outJdl.write('\n'+'x509userproxy = $ENV(X509_USER_PROXY)')
+	outJdl.write('\n')
+	outJdl.write('\n'+'+JobFlavour = '+self.jobflavour)
+	outJdl.write('\n')
+	outJdl.write('\n'+'output_destination = ' + self.Destination)
+	outJdl.write('\n')
+	outJdl.write('\n'+'transfer_output_files = out_$(Cluster)_$(Process).root')
+	outJdl.write('\n')
         if self.request_memory != 0: outJdl.write('\n'+'request_memory = '+str(self.request_memory))
         if self.request_cpus != 0: outJdl.write('\n'+'request_cpus = '+ str(self.request_cpus))
         return self.fileName+'.jdl'
 
     def jdlFileAppendLogInfo(self):
         outJdl = open(self.fileName+'.jdl','a')
-        outJdl.write('\n'+'Output = '+self.logFilePath+os.sep+self.logFileName+'_$(Cluster)_$(Process).stdout')
-        outJdl.write('\n'+'Error  = '+self.logFilePath+os.sep+self.logFileName+'_$(Cluster)_$(Process).stdout')
-        outJdl.write('\n'+'Log  = '+self.logFilePath+os.sep+self.logFileName+'_$(Cluster)_$(Process).log')
-        outJdl.write('\n'+'Arguments = $(Cluster) $(Process) '+self.Arguments)
+        outJdl.write('\n')
+	outJdl.write('\n'+'Output = outs/$(Cluster)_$(Process).out')
+        outJdl.write('\n'+'Error  = errors/$(Cluster)_$(Process).err')
+        outJdl.write('\n'+'Log  = logs/$(Cluster)_$(Process).log')
+        outJdl.write('\n'+'Arguments = $(Proxy_path) $(Cluster) $(Process) '+self.Arguments)
         outJdl.write('\n'+'Queue '+str(self.Queue))
         outJdl.close()
 

@@ -2,7 +2,7 @@
 # using: 
 # Revision: 1.19 
 # Source: /local/reps/CMSSW/CMSSW/Configuration/Applications/python/ConfigBuilder.py,v 
-# with command line options: --python_filename EGM-RunIISummer20UL18RECO-00002_1_cfg.py --eventcontent RECO --customise Configuration/DataProcessing/Utils.addMonitoring --datatier RECO --fileout file:EGM-RunIISummer20UL18RECO-00002.root --conditions 106X_upgrade2018_realistic_v11_L1v1 --step RAW2DIGI,L1Reco,RECO,RECOSIM,EI --geometry DB:Extended --filein file:EGM-RunIISummer20UL18HLT-00002.root --era Run2_2018 --runUnscheduled --no_exec --mc -n 20
+# with command line options: --python_filename EGM-RunIISummer20UL18RECO-00002_1_cfg.py --eventcontent RECO --customise Configuration/DataProcessing/Utils.addMonitoring --datatier AODSIM --fileout file:EGM-RunIISummer20UL18RECO-00002.root --conditions 106X_upgrade2018_realistic_v11_L1v1 --step RAW2DIGI,L1Reco,RECO,RECOSIM,EI --geometry DB:Extended --filein file:EGM-RunIISummer20UL18HLT-00002.root --era Run2_2018 --runUnscheduled --no_exec --mc -n 20
 import FWCore.ParameterSet.Config as cms
 
 from Configuration.Eras.Era_Run2_2018_cff import Run2_2018
@@ -50,7 +50,7 @@ process.configurationMetadata = cms.untracked.PSet(
 
 process.RECOoutput = cms.OutputModule("PoolOutputModule",
     dataset = cms.untracked.PSet(
-        dataTier = cms.untracked.string('RECO'),
+        dataTier = cms.untracked.string('AODSIM'),
         filterName = cms.untracked.string('')
     ),
     fileName = cms.untracked.string('file:EGM-RunIISummer20UL18RECO-00002.root'),
