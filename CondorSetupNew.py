@@ -34,14 +34,16 @@ import sys
 sys.path.append("./python_utils/")
 from color_style import style
 
-os.system('voms-proxy-init --voms cms --out /afs/cern.ch/user/c/chenguan/private/voms_proxy.txt --hours 4')
+#os.system('voms-proxy-init --voms cms --out /afs/cern.ch/user/c/chenguan/private/voms_proxy.txt --hours 4')
 
 DirName = args.dirname
 EOSPath = '/eos/user/c/chenguan/CondorOutputs/'+DirName + '/'
 
 os.mkdir( '/eos/user/c/chenguan/CondorOutputs/'+DirName )
-for subd in ['errors','outs']:
+for subd in ['errors','outs','logs']:
 	os.mkdir( '/eos/user/c/chenguan/CondorOutputs/'+DirName+'/'+subd )
+	if subd == 'logs':
+		os.mkdir( './'+subd )
 condor_file_name = args.filename
 
 import condorJobHelper
@@ -84,14 +86,16 @@ outScript.write('\n'+'echo $PWD')
 outScript.write('\n'+'ls')
 outScript.write('\n'+'echo "================================================="')
 outScript.write('\n'+'')
-outScript.write('\n'+'export X509_USER_PROXY=${1}')
-outScript.write('\n'+'voms-proxy-info -all')
-outScript.write('\n'+'voms-proxy-info -all -file ${1}')
+#outScript.write('\n'+'export X509_USER_PROXY=${1}')
+#outScript.write('\n'+'voms-proxy-info -all')
+#outScript.write('\n'+'voms-proxy-info -all -file ${1}')
 outScript.write('\n'+'')
 outScript.write('\n'+'echo "================================================="')
 outScript.write('\n'+'')
 outScript.write('\n'+'export SCRAM_ARCH=slc7_amd64_gcc700')
+outScript.write('\n'+'export HOME=/afs/cern.ch/user/c/chenguan/')
 outScript.write('\n'+'')
+outScript.write('\n'+'echo "================================================="')
 ########################################################################
 ##
 ##  Read JSON FILE and as per the info of json file do each steps
@@ -116,7 +120,7 @@ for steps in data['steps']:
     outScript.write('\n'+'cd -')
     outScript.write('\n'+'cmsRun  '+steps['PythonConfig'])
     if steps['step'] == 'RECO':
-	    outScript.write('\n'+'mv EGM-RunIISummer20UL18RECO-00002.root out_${2}_${3}.root')
+	    outScript.write('\n'+'mv EGM-RunIISummer20UL18RECO-00002.root out_${1}_${2}.root')
 
 ########################################################################
 outScript.close()

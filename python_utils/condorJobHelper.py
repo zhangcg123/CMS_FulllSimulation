@@ -22,8 +22,8 @@ class condorJobHelper(object):
 
     def jdlFileHeaderCreater(self):
         outJdl = open(self.fileName+'.jdl','w')
-        outJdl.write('Proxy_path = /afs/cern.ch/user/c/chenguan/private/voms_proxy.txt')
-	outJdl.write('\n')
+        #outJdl.write('Proxy_path = /afs/cern.ch/user/c/chenguan/private/voms_proxy.txt')
+	#outJdl.write('\n')
 	outJdl.write('Executable = '+self.fileName+'.sh')
 	outJdl.write('\n')
         outJdl.write('\n'+'Universe = vanilla')
@@ -40,7 +40,7 @@ class condorJobHelper(object):
 	outJdl.write('\n')
 	outJdl.write('\n'+'+JobFlavour = '+self.jobflavour)
 	outJdl.write('\n')
-	outJdl.write('\n'+'output_destination = ' + self.Destination)
+	outJdl.write('\n'+'output_destination = root://eosuser.cern.ch/' + self.Destination)
 	outJdl.write('\n')
 	outJdl.write('\n'+'transfer_output_files = out_$(Cluster)_$(Process).root')
 	outJdl.write('\n')
@@ -54,7 +54,7 @@ class condorJobHelper(object):
 	outJdl.write('\n'+'Output = outs/$(Cluster)_$(Process).out')
         outJdl.write('\n'+'Error  = errors/$(Cluster)_$(Process).err')
         outJdl.write('\n'+'Log  = logs/$(Cluster)_$(Process).log')
-        outJdl.write('\n'+'Arguments = $(Proxy_path) $(Cluster) $(Process) '+self.Arguments)
+        outJdl.write('\n'+'Arguments = $(Cluster) $(Process) '+self.Arguments)
         outJdl.write('\n'+'Queue '+str(self.Queue))
         outJdl.close()
 

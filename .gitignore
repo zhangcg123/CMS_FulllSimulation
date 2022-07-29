@@ -1,4 +1,5 @@
 voms_proxy.txt
+logs
 CMSSW_*/
 *.stdout
 *.jdl
