@@ -8,15 +8,6 @@
    - RECO (CMSSW_10_6_17_patch1): https://cms-pdmv.cern.ch/mcm/public/restapi/requests/get_setup/EGM-RunIISummer20UL18RECO-00002
    - MiniAOD (CMSSW_10_6_20): https://cms-pdmv.cern.ch/mcm/public/restapi/requests/get_setup/EGM-RunIISummer20UL18MiniAODv2-00004
 
-## Inputs
-
-1. Number of steps:
-  - Step:1: CMSSWVersion, Python Config, Number of events, RandomSeed, Gridpack Name with path, Output File name
-  - Step:2: CMSSWVersion, Python Config
-  - Step:3: CMSSWVersion, Python Config
-  - Step:4: CMSSWVersion, Python Config
-  - Step:5: CMSSWVersion, Python Config
-  - Step:6: CMSSWVersion, Python Config
 
 # General Information
 
