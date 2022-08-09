@@ -44,7 +44,7 @@ cd ../..
 # According to 1.0000 efficiency, validation should run 10000 / 1.0000 = 10000 events to reach the limit of 10000
 # Take the minimum of 1626 and 10000, but more than 0 -> 1626
 # It is estimated that this validation will produce: 1626 * 1.0000 = 1626 events
-EVENTS=20
+EVENTS=500
 
 
 # cmsDriver command
